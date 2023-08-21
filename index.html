@@ -12,113 +12,11 @@
     />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <style>
-      * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-      }
-
-      #result {
-        position: absolute;
-        width: 100%;
-        max-width: 870px;
-        cursor: pointer;
-        overflow-y: auto;
-        max-height: 400px;
-        box-sizing: border-box;
-        z-index: 1001;
-      }
-      .link-class:hover {
-        background-color: #f1f1f1;
-      }
-      .container {
-        text-align: center;
-      }
-      .container #result {
-        text-align: left;
-      }
-      .container-card {
-        width: 550px;
-        border: 1px solid black;
-        border-radius: 10px;
-        margin: auto;
-        background-image: linear-gradient(to bottom, #fb8130, #ee345b);
-        color: #3c3d69;
-        overflow: hidden;
-      }
-      .grid {
-        display: grid;
-        gap: 10px;
-      }
-      .grid--1-col {
-        grid-column: 1 / span 2;
-      }
-      .grid--2-cols {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .hidden {
-        display: none;
-      }
-
-      .img {
-        align-items: center;
-      }
-      .logo {
-        width: 100px;
-        height: 100px;
-        margin-top: 15px;
-      }
-      .photo {
-        width: 300px;
-        height: 300px;
-      }
-      .flex {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-      .user {
-        padding: 10px;
-      }
-      .name {
-        font-size: 22px;
-      }
-      #name,
-      #lastName {
-        font-size: 25px;
-        font-weight: bolder;
-      }
-      .email {
-        font-size: 18px;
-      }
-      #birthdate,
-      #email {
-        font-size: 20px;
-        font-weight: bolder;
-      }
-      .company p {
-        font-size: 22px;
-      }
-      .company p#companyName,
-      .company p#companyTitle {
-        font-size: 26px;
-        font-weight: bolder;
-      }
-
-      .visitor {
-        background-color: #3c3d69;
-        text-transform: uppercase;
-        font-size: 40px;
-        color: #f0a62b;
-        text-align: center;
-        margin: 0;
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
   </head>
   <body>
-    <div class="container" style="width: 900px">
+    <div class="container">
       <h2>DPP - Integração Avançada com JQuery+JSON+Ajax</h2>
       <h3>Busca de inscritos</h3>
       <br /><br />
@@ -174,70 +72,9 @@
         </div>
       </div>
 
-      <div>
-        <p class="visitor">visitante</p>
+      <div class="visitor">
+        <p>visitante</p>
       </div>
     </div>
   </body>
 </html>
-
-<script>
-  $(document).ready(function () {
-    $.ajaxSetup({ cache: false });
-
-    //PREPARA BUSCA A PARTIR DA TECLA PRESSIONADA
-    $("#search").keyup(function () {
-      $("#result").html("");
-      $("#state").val("");
-      var searchField = $("#search").val();
-      var expression = new RegExp(searchField, "i");
-
-      //REALIZA A BUSCA NO JSON
-      $.getJSON("https://dummyjson.com/users", function (data) {
-        $.each(data.users, function (key, value) {
-          if (
-            value.firstName.search(expression) != -1 ||
-            value.email.search(expression) != -1
-          ) {
-            $("#result").append(
-              '<li class="list-group-item link-class"><img src="' +
-                value.image +
-                '" height="40" width="40" class="img-thumbnail" /> ' +
-                value.firstName +
-                ' | <span class="text-muted">' +
-                value.email +
-                ' | <span class="text-muted">' +
-                value.company.name +
-                ' | <span class="text-muted">' +
-                value.company.title +
-                "</span></li>"
-            );
-          }
-        });
-      });
-    });
-
-    //
-    $("#result").on("click", "li", function () {
-      let click_text = $(this).text().split("|");
-      $("#search").val($.trim(click_text[1]));
-      $("#result").html("");
-
-      //BUSCA E SUBSTITUI O VALOR DO JSON
-      click_text = $(this).text().split("|")[0].trim();
-      $.getJSON("https://dummyjson.com/users", function (data) {
-        const value = data.users.find((v) => v.firstName === click_text);
-        if (value) {
-          $("#photo").html('<img src="' + value.image + '" class="photo"/>');
-          $("#name").text(value.firstName);
-          $("#lastName").text(value.lastName);
-          $("#birthdate").text(value.birthDate);
-          $("#email").text(value.email);
-          $("#companyName").text(value.company.name);
-          $("#companyTitle").text(value.company.title);
-        }
-        $("div.container-card").removeClass("hidden");
-      });
-    });
-  });
-</script>
