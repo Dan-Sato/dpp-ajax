@@ -20,16 +20,79 @@
       <h2>DPP - Integração Avançada com JQuery+JSON+Ajax</h2>
       <h3>Busca de inscritos</h3>
       <br /><br />
-      <div>
-        <input
-          type="text"
-          name="search"
-          id="search"
-          placeholder="Busca detalhes dos incritos"
-          class="form-control"
-        />
+
+      <div class="searchGroup">
+        <div>
+          <div>
+            <p class="searchFor">Busca nome dos inscritos</p>
+            <input
+              type="text"
+              name="searchFirstName"
+              id="searchFirstName"
+              placeholder="Nome"
+              class="form-control search"
+            />
+          </div>
+          <ul class="list-group result" id="resultFirstName"></ul>
+        </div>
+
+        <div>
+          <div>
+            <p class="searchFor">Busca sobrenome dos inscritos</p>
+            <input
+              type="text"
+              name="searchLastName"
+              id="searchLastName"
+              placeholder="Sobrenome"
+              class="form-control search"
+            />
+          </div>
+          <ul class="list-group result" id="resultLastName"></ul>
+        </div>
+
+        <div>
+          <div>
+            <p class="searchFor">Busca e-mail</p>
+            <input
+              type="email"
+              name="searchEmail"
+              id="searchEmail"
+              placeholder="E-Mail"
+              class="form-control search"
+            />
+          </div>
+          <ul class="list-group result" id="resultEmail"></ul>
+        </div>
+
+        <div>
+          <div>
+            <p class="searchFor">Busca empresa</p>
+            <input
+              type="text"
+              name="searchCompany"
+              id="searchCompany"
+              placeholder="Empresa"
+              class="form-control search"
+            />
+          </div>
+          <ul class="list-group result" id="resultCompany"></ul>
+        </div>
+
+        <div>
+          <div>
+            <p class="searchFor">Busca cargo</p>
+            <input
+              type="text"
+              name="searchTitle"
+              id="searchTitle"
+              placeholder="Cargo"
+              class="form-control search"
+            />
+          </div>
+          <ul class="list-group result" id="resultTitle"></ul>
+        </div>
       </div>
-      <ul class="list-group" id="result"></ul>
+
       <br />
     </div>
 
@@ -43,7 +106,7 @@
         <div class="name">
           <div>
             <p>Nome</p>
-            <p id="name"></p>
+            <p id="firstName"></p>
           </div>
           <div>
             <p>Sobrenome</p>

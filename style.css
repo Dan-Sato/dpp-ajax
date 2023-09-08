@@ -7,9 +7,21 @@ body {
   background-color: gainsboro;
 }
 
-#result {
+.searchGroup {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.searchFor {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.result {
   position: absolute;
-  width: 100%;
+  text-align: left;
   max-width: 870px;
   cursor: pointer;
   overflow-y: auto;
@@ -21,8 +33,10 @@ body {
   background-color: #f1f1f1;
 }
 .container {
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  width: 900px;
+  width: 75vw;
 }
 .container #result {
   text-align: left;
@@ -75,7 +89,7 @@ body {
 .name {
   font-size: 22px;
 }
-#name,
+#firstName,
 #lastName {
   font-size: 24px;
   font-weight: bolder;
